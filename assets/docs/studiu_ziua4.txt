@@ -1,0 +1,79 @@
+============================================================
+  STUDIU CSS - ZIUA 4 | Nivel Avansat
+  Data: 07.05.2026
+============================================================
+
+1. FLEX-GROW vs FLEX-SHRINK
+------------------------------------------------------------
+flex-grow: Determină cât de mult poate CREȘTE un element
+  flex față de ceilalți frați în containerul flex, atunci
+  când există spațiu disponibil rămas. Valoarea implicită
+  este 0 (nu crește). Dacă un element are flex-grow: 2 și
+  altul flex-grow: 1, primul va primi de 2 ori mai mult
+  spațiu rezidual decât al doilea.
+
+  Exemplu: Dacă există 300px liberi și avem 3 elemente cu
+  flex-grow: 1, 2, 3 → împărțire: 50px, 100px, 150px.
+
+flex-shrink: Determină cât de mult poate MICȘORA un element
+  flex față de ceilalți, atunci când spațiul este insuficient.
+  Valoarea implicită este 1 (se micșorează proporțional).
+  Un element cu flex-shrink: 0 nu se va micșora niciodată.
+
+  Diferența cheie:
+  - flex-grow  → se activează când există spațiu ÎN PLUS
+  - flex-shrink → se activează când spațiul este INSUFICIENT
+
+
+2. ALIGN-CONTENT vs ALIGN-ITEMS
+------------------------------------------------------------
+align-items: Aliniază elementele flex pe axa transversală
+  (cross axis) ÎN CADRUL UNUI SINGUR RÂND. Funcționează
+  întotdeauna, indiferent de numărul de rânduri.
+
+  Valori comune: flex-start | flex-end | center |
+                 baseline | stretch (implicit)
+
+align-content: Aliniază RÂNDURILE MULTIPLE ale containerului
+  flex pe axa transversală. FUNCȚIONEAZĂ DOAR când există
+  mai multe rânduri (adică flex-wrap: wrap este activ și
+  elementele s-au distribuit pe mai multe rânduri).
+
+  Dacă există un singur rând, align-content nu are efect!
+
+  Valori comune: flex-start | flex-end | center |
+                 space-between | space-around | stretch
+
+  Regulă de memorare:
+  - align-items  → aliniază ELEMENTE în rândul lor
+  - align-content → aliniază RÂNDURILE în container
+
+
+3. GRID-TEMPLATE-AREAS
+------------------------------------------------------------
+Proprietate CSS Grid care permite definirea vizuală a
+layout-ului paginii prin atribuirea de NUME SIMBOLICE
+zonelor grilei, în loc să se folosească numere de linii/coloane.
+
+  Sintaxă:
+  .container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 80px 1fr 60px;
+    grid-template-areas:
+      "header  header"
+      "sidebar content"
+      "footer  footer";
+  }
+  .header  { grid-area: header; }
+  .sidebar { grid-area: sidebar; }
+  .content { grid-area: content; }
+  .footer  { grid-area: footer; }
+
+  Avantaje:
+  - Codul este auto-documentat vizual
+  - Layout-ul poate fi rearanjat doar schimbând șirul de text
+  - Ideal pentru layout-uri responsive (re-definești
+    grid-template-areas în media queries)
+  - Punctul "." reprezintă o celulă goală
+
