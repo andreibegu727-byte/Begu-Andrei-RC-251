@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Pagina nu a fost găsită | Tradiții Moldovenești</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="theme-color" content="#E8920A">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #E8920A;
+      --gold-light: #f0a833;
+      --dark: #111111;
+      --darker: #0A0A0A;
+      --card: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+    }
+    body {
+      background: var(--dark);
+      font-family: 'Raleway', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 22px 60px;
+      background: rgba(17,17,17,0.95);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .error-container {
+      max-width: 560px;
+    }
+    .error-code {
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    .error-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .error-msg {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .btn-home {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-right: 12px;
+    }
+    .btn-home:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-back {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 14px 36px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-back:hover { border-color: var(--gold); color: var(--gold); }
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px auto;
+      opacity: 0.6;
+    }
+    footer {
+      background: var(--darker);
+      padding: 20px 60px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    a:focus, button:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav role="navigation" aria-label="Navigație principală">
+    <a href="index.html" class="logo">Tradiții Moldovenești</a>
+  </nav>
+
+  <main role="main">
+    <div class="error-container">
+      <div class="error-code" aria-label="Eroare 404">404</div>
+      <div class="divider" aria-hidden="true"></div>
+      <h1 class="error-title">Pagina nu a fost găsită</h1>
+      <p class="error-msg">
+        Se pare că pagina pe care o cauți nu există sau a fost mutată.<br>
+        Verificați adresa URL sau reveniți la pagina principală.
+      </p>
+      <a href="index.html" class="btn-home">Mergi Acasă</a>
+      <a href="javascript:history.back()" class="btn-back">Înapoi</a>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2026 <a href="index.html">Tradiții Moldovenești</a> — Str. Ștefan cel Mare 100, Chișinău</p>
+  </footer>
+
+  <!-- Final Quality Audit: Mobile Performance Optimized by Begu Andrei -->
+
+</body>
+</html>
