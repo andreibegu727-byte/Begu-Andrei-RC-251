@@ -1,0 +1,756 @@
+/* ═══════════════════════════════════════════════════
+   Tradiții Moldovenești — style.css
+   ═══════════════════════════════════════════════════ */
+
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #E8920A;
+  --gold-light: #f0a833;
+  --dark: #111111;
+  --darker: #0A0A0A;
+  --card: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #ffffff;
+  --muted: #aaaaaa;
+  --error: #e74c3c;
+  --success: #2ecc71;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  font-family: 'Raleway', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+}
+
+/* ── NAVIGATION ── */
+nav {
+  display: flex;
+  align-items: center;
+  padding: 22px 60px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-right: auto;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links .reservare a { color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 60px 60px 70px;
+  align-items: center;
+  gap: 50px;
+  min-height: 90vh;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+
+.hero-text p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #cccccc;
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  padding: 14px 36px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.hero-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--border);
+}
+
+.hero-image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800') center / cover no-repeat;
+}
+
+/* ── SECTION TITLES ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 48px;
+}
+
+.gold { color: var(--gold); }
+
+/* ── SERVICES ── */
+#servicii {
+  padding: 80px 60px;
+  background: var(--darker);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 32px 24px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.service-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.service-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── CONTACT SECTION — CSS GRID LAYOUT ── */
+#contact {
+  padding: 80px 60px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Formularul 2/3, info 1/3 */
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── FORM STYLES ── */
+.contact-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 40px;
+}
+
+/* fieldset & legend */
+fieldset {
+  border: 1px solid var(--border);
+  padding: 28px 24px 24px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+legend {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0 10px;
+  background: var(--card);
+}
+
+/* ── FLOATING LABELS ── */
+.field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0 4px;
+}
+
+.field textarea ~ label {
+  top: 18px;
+  transform: none;
+}
+
+/* Floating label — se ridică la :focus sau când câmpul are valoare */
+.field input:focus ~ label,
+.field input:not(:placeholder-shown) ~ label,
+.field select:focus ~ label,
+.field select:not([value=""]) ~ label,
+.field textarea:focus ~ label,
+.field textarea:not(:placeholder-shown) ~ label {
+  top: -10px;
+  transform: none;
+  font-size: 11px;
+  color: var(--gold);
+  background: var(--card);
+  letter-spacing: 0.05em;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  background: #222222;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8920A' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--gold);
+}
+
+/* ── STĂRI DE VALIDARE ── */
+.field input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--error);
+}
+
+.field input:valid:not(:placeholder-shown) {
+  border-color: var(--success);
+}
+
+/* ── TOOLTIP ERORI CSS-ONLY ── */
+.field .error-msg {
+  display: none;
+  font-size: 11px;
+  color: var(--error);
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.field input:invalid:not(:placeholder-shown):not(:focus) ~ .error-msg {
+  display: block;
+}
+
+/* Char counter */
+.char-counter {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ── SUBMIT BUTTON CU LOADING ANIMATION ── */
+.btn-submit {
+  width: 100%;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: none;
+}
+
+.btn-submit:hover { background: var(--gold-light); }
+
+.btn-submit:active::after {
+  animation: loading 0.8s ease forwards;
+}
+
+@keyframes loading {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── CONTACT INFO SIDEBAR ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(80%) invert(90%) contrast(85%);
+}
+
+.contact-details {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px;
+}
+
+.contact-details h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.contact-item strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.contact-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--darker);
+  padding: 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+}
+
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+
+.footer-col ul li a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--gold); }
+
+.reserva-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+}
+
+.reserva-link:hover { text-decoration: underline; }
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.social-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.social-icon.linkedin { background: #0077b5; }
+.social-icon:hover { opacity: 0.8; }
+
+/* ── SS10: MENIU PREȚURI TABLE ── */
+#meniu-preturi {
+  padding: 80px 60px;
+  background: var(--darker);
+}
+
+.table-container { overflow-x: auto; }
+
+.meniu-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 650px;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.meniu-table thead th {
+  background: var(--gold);
+  color: #ffffff;
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border: 1px solid #c47a08;
+}
+
+.meniu-table tbody td {
+  padding: 13px 18px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.meniu-table tbody tr:nth-child(even) td { background-color: #1f1f1f; }
+.meniu-table tbody tr:nth-child(odd) td { background-color: var(--card); }
+
+.meniu-table tbody tr:hover td {
+  background-color: #3a2500;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.meniu-table td.preparat { font-weight: 700; color: var(--gold); text-align: left; }
+.meniu-table td.categorie { color: var(--muted); font-size: 13px; }
+.meniu-table td.pret { font-weight: 700; color: var(--gold); font-size: 15px; }
+
+/* ── SS14: LOCAȚIE & PREZENTARE ── */
+#despre {
+  padding: 80px 60px;
+  background: var(--dark);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.media-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* max-width: 100% asigura ca iframe-urile nu depasesc ecranul pe mobil */
+.video-wrap,
+.map-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.video-wrap iframe,
+.map-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ── FOCUS MANAGEMENT (Accessibility — Ziua 9) ── */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hero { grid-template-columns: 1fr; padding: 40px 24px; }
+  .contact-grid { grid-template-columns: 1fr; padding: 40px 24px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  footer { grid-template-columns: 1fr 1fr; padding: 32px 24px; }
+  #servicii, #contact { padding: 60px 24px; }
+  #meniu-preturi { padding: 60px 24px; }
+  #despre { padding: 60px 24px; }
+  .media-grid { grid-template-columns: 1fr; }
+}
+
+/* ── HERO IMG (înlocuiește placeholder-ul) ── */
+.hero-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  display: block;
+}
+
+/* ── GALERIE IMAGINI — Perechea III ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.2s;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+  border-color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  #galerie { padding: 60px 24px; }
+}
+
+@media (max-width: 500px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* ── PRINT STYLESHEET — Perechea IV ── */
+@media print {
+  /* Ascunde elementele inutile la imprimare */
+  nav,
+  .btn-primary,
+  .btn-submit,
+  .hero-img,
+  .hero-image-placeholder,
+  .contact-map,
+  .video-wrap,
+  .map-wrap,
+  .gallery-grid,
+  footer,
+  #galerie {
+    display: none !important;
+  }
+
+  /* Fundal alb, text negru pentru imprimare */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+    font-family: Georgia, serif;
+  }
+
+  h1, h2, h3 {
+    color: #000000 !important;
+  }
+
+  .gold {
+    color: #000000 !important;
+  }
+
+  /* Asigură că secțiunile nu se taie între pagini */
+  section {
+    background: #ffffff !important;
+    padding: 20pt 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Tabelul meniu se afișează complet */
+  .meniu-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #ffffff !important;
+    border: 1px solid #000 !important;
+  }
+
+  .meniu-table thead th {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .meniu-table tbody td {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000 !important;
+  }
+
+  /* Afișează URL-urile link-urilor la imprimare */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #444;
+  }
+
+  /* Nu afișa URL pentru link-uri interne/ancore */
+  a[href^="#"]::after {
+    content: "";
+  }
+}
+/* ── REFACTORING Perechea IV: Inline styles eliminate -> moved to CSS ── */
+
+/* Section header wrapper (was inline style="text-align:center; margin-bottom:48px") */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* Galerie section (was inline style="padding: 80px 60px; background: var(--darker)") */
+.galerie-section {
+  padding: 80px 60px;
+  background: var(--darker);
+}
+
+/* Floated label for date input (was inline style on label) */
+.label-floated {
+  position: absolute;
+  left: 14px;
+  top: -10px;
+  transform: none;
+  font-size: 11px;
+  color: var(--gold);
+  background: var(--card);
+  padding: 0 4px;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* Footer social section wrapper (was inline style="margin-top:18px") */
+.footer-social-wrap {
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .galerie-section { padding: 60px 24px; }
+}

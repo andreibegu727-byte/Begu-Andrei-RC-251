@@ -1,0 +1,66 @@
+; =========================================================================
+; RFC 1035 ZONE FILE - CONFIGURARE DNS ENTERPRISE
+; Domeniu Autoritar: begu-andrei.rc251.utm.md
+; Configurat de: Begu Andrei | RC251 | Data: 15.05.2026
+; =========================================================================
+
+$ORIGIN begu-andrei.rc251.utm.md.
+$TTL 3600 ; TTL Implicit Global: 1 ora
+
+; -------------------------------------------------------------------------
+; 1. INREGISTRAREA START OF AUTHORITY (SOA)
+; -------------------------------------------------------------------------
+@   IN  SOA  ns1.rc251.utm.md. admin.begu-andrei.rc251.utm.md. (
+            2026051502 ; Serial: YYYYMMDDNN - incrementat dupa modificare
+            7200       ; Refresh: 2 ore
+            3600       ; Retry: 1 ora
+            1209600    ; Expire: 2 saptamani
+            1800       ; Minimum TTL: 30 minute
+)
+
+; -------------------------------------------------------------------------
+; 2. NAMESERVERS (NS) - Delegarea autoritatii
+; -------------------------------------------------------------------------
+@   IN  NS   ns1.rc251.utm.md.
+@   IN  NS   ns2.rc251.utm.md.
+
+; -------------------------------------------------------------------------
+; 3. ADRESE IP PRIMARE (A Records) - Maparea catre serverele Cloud
+; -------------------------------------------------------------------------
+@   IN  A    75.2.60.5
+@   IN  A    99.83.190.102
+
+; -------------------------------------------------------------------------
+; 4. SUBDOMENII SI ALIASE (CNAME Records)
+; -------------------------------------------------------------------------
+; CNAME Target Lock: indica direct domeniul live Netlify (FQDN cu punct final)
+www IN  CNAME begu-andrei.netlify.app.
+
+; -------------------------------------------------------------------------
+; 5. CONFIGURARE EMAIL CU PRIORITATI (MX Records)
+; -------------------------------------------------------------------------
+@   IN  MX  10 mail.rc251.utm.md.
+@   IN  MX  20 backup-mail.rc251.utm.md.
+mail IN  A   193.226.50.12 ; IP-ul serverului de mail UTM
+
+; -------------------------------------------------------------------------
+; 6. SECURIZARE PORTFOLIO & VERIFICARE DOMENIU (TXT Records)
+; -------------------------------------------------------------------------
+@   IN  TXT  "google-site-verification=UX251_UTM_ENGINEERING_VERIFIED"
+
+; Politica SPF restrictiva: permite DOAR IP-urile MX definite anterior
+; NOTA SECURITATE: "v=spf1 mx -all" este superior fata de "~all" deoarece:
+;   -all = HARD FAIL: serverul receptor RESPINGE total mailurile neautorizate
+;   ~all = SOFT FAIL: mailurile neautorizate sunt doar marcate, nu respinse
+; Concluzie: -all ofera protectie reala, ~all este permisiv si nesigur.
+@   IN  TXT  "v=spf1 mx -all"
+
+; Politica DMARC: respingere totala a e-mailurilor falsificate
+_dmarc IN TXT "v=DMARC1; p=reject; pct=100; rua=mailto:dmarc-reports@begu-andrei.rc251.utm.md"
+
+; -------------------------------------------------------------------------
+; 7. CONTROL CERTIFICARE SSL (CAA Records)
+; -------------------------------------------------------------------------
+; Autorizam DOAR Let's Encrypt sa poata emite certificate SSL pentru noi
+@   IN  CAA  0 issue "letsencrypt.org"
+@   IN  CAA  0 iodef "mailto:security-alerts@begu-andrei.rc251.utm.md"

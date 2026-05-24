@@ -2,7 +2,7 @@
 # Configurat de: Begu Andrei | RC251 | 15.05.2026
 
 [[redirects]]
-  from   = "http://*"
+  from   = "https://begu-andrei.netlify.app"
   to     = "https://:splat"
   status = 301
   force  = true
