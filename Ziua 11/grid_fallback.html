@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Fallback — Begu Andrei | RC-251</title>
+  <!-- Cross-Browser Audit & Feature Queries Designed by: Begu Andrei | Data: 19.05.2026 -->
+  <style>
+    /* =========================================================
+       RESET & BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      color: #f8fafc;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 48px;
+    }
+
+    /* =========================================================
+       1. STILURI DE BAZA & FALLBACK (Flexbox — Compatibilitate Universala)
+    ========================================================= */
+    .adaptive-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 40px;
+      background-color: #0f172a;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .adaptive-card {
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 280px;
+      background-color: #1e293b; /* Culoare solida — fallback fara transparenta */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      color: #f8fafc;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .adaptive-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .adaptive-card__header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 14px;
+    }
+
+    .adaptive-card__body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    /* =========================================================
+       2. REFORMARE LA GRID (Browsere Moderne — display: grid)
+    ========================================================= */
+    @supports (display: grid) {
+      .adaptive-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .adaptive-card {
+        /* Resetam latimile Flexbox — Grid preia controlul */
+        flex: none;
+        min-width: 0;
+      }
+    }
+
+    /* =========================================================
+       3. REFORMARE OPTICA (Glassmorphism — backdrop-filter)
+    ========================================================= */
+    @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+      .adaptive-card {
+        background-color: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .adaptive-showcase {
+        background: radial-gradient(circle at top left, #1e1b4b, #090514);
+        border-radius: 24px;
+      }
+    }
+
+    /* =========================================================
+       4. "NOT" OPERATOR CHALLENGE — Fallback pentru browsere FARA backdrop-filter
+    ========================================================= */
+    @supports not (backdrop-filter: blur(10px)) {
+      .adaptive-card {
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.8),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        background-image: linear-gradient(135deg, #1a2744 0%, #0d1b2a 100%);
+      }
+    }
+
+    /* =========================================================
+       SUBGRID FALLBACK PLAN (Bonus)
+    ========================================================= */
+    @supports (display: grid) {
+      .adaptive-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+    }
+
+    @supports (grid-template-rows: subgrid) {
+      .adaptive-showcase {
+        /* Daca subgrid e suportat, cardurile se aliniaza perfect pe randuri */
+        grid-template-rows: subgrid;
+      }
+    }
+
+    /* Badge suport */
+    .support-badge {
+      display: inline-block;
+      margin: 0 4px 32px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Perechea I — Audit Cross-Browser & Feature Queries</h1>
+  <p class="subtitle">Begu Andrei · RC-251 · 19.05.2026 · Tradiții Moldovenești</p>
+
+  <div>
+    <span class="support-badge">@supports (display: grid)</span>
+    <span class="support-badge">@supports (backdrop-filter)</span>
+    <span class="support-badge">@supports not (...)</span>
+  </div>
+
+  <!-- Realizat de: Begu Andrei | Ziua 11 - Perechea 1 -->
+  <section class="adaptive-showcase">
+
+    <div class="adaptive-card">
+      <div class="adaptive-card__header">Modulul 01</div>
+      <p class="adaptive-card__body">Sistem de interfață rezistent la erori și compatibil retroactiv. Fallback Flexbox pentru browsere fără suport Grid.</p>
+    </div>
+
+    <div class="adaptive-card">
+      <div class="adaptive-card__header">Modulul 02</div>
+      <p class="adaptive-card__body">Fallback automat la nivel de layout engine prin Feature Queries (@supports). Fără JavaScript, totul în CSS nativ.</p>
+    </div>
+
+    <div class="adaptive-card">
+      <div class="adaptive-card__header">Modulul 03</div>
+      <p class="adaptive-card__body">Suport complet pentru randare pe GPU (backdrop-filter) sau CPU legacy (gradient solid + box-shadow intens).</p>
+    </div>
+
+  </section>
+
+</body>
+</html>
