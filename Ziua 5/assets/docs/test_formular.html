@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formular de Înregistrare — Tradiții Moldovenești</title>
+  <style>
+    :root {
+      --gold: #E8920A;
+      --dark: #111;
+      --card: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #fff;
+      --muted: #aaa;
+      --error: #e74c3c;
+      --success: #2ecc71;
+      --form-bg: #111111; /* modificat de color picker */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--form-bg);
+      font-family: 'Raleway', 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      transition: background 0.3s;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 36px;
+    }
+
+    .form-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 40px;
+    }
+
+    /* ── FLOATING LABEL FIELD ── */
+    .field {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .field label {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--muted);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      padding: 0 4px;
+      background: transparent;
+    }
+
+    .field input:focus ~ label,
+    .field input:not(:placeholder-shown) ~ label {
+      top: -10px;
+      transform: none;
+      font-size: 11px;
+      color: var(--gold);
+      background: var(--card);
+      letter-spacing: 0.05em;
+    }
+
+    .field input {
+      width: 100%;
+      background: #222;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus { border-color: var(--gold); }
+
+    /* Validare stări */
+    .field input:invalid:not(:placeholder-shown):not(:focus) {
+      border-color: var(--error);
+    }
+    .field input:valid:not(:placeholder-shown) {
+      border-color: var(--success);
+    }
+
+    /* ── TOOLTIP ERORI CSS-ONLY ── */
+    .error-msg {
+      display: none;
+      font-size: 11px;
+      color: var(--error);
+      margin-top: 6px;
+      padding-left: 4px;
+      line-height: 1.5;
+    }
+
+    .field input:invalid:not(:placeholder-shown):not(:focus) ~ .error-msg {
+      display: block;
+    }
+
+    /* ── COLOR PICKER SPECIAL ── */
+    .color-field {
+      margin-bottom: 24px;
+    }
+
+    .color-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    input[type="color"] {
+      width: 56px;
+      height: 48px;
+      border: 2px solid var(--border);
+      background: #222;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 0;
+      transition: border-color 0.2s;
+    }
+    input[type="color"]:hover { border-color: var(--gold); }
+
+    .color-preview {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .color-preview span {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 14px;
+      font-family: monospace;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-submit::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+    }
+
+    .btn-submit:hover {
+      background: #f0a833;
+    }
+
+    .btn-submit:active::after {
+      animation: shimmer 0.7s ease forwards;
+    }
+
+    @keyframes shimmer {
+      to { transform: translateX(100%); }
+    }
+
+    /* Strength indicator */
+    .strength-bar {
+      height: 3px;
+      background: var(--border);
+      margin-top: 8px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .strength-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--error);
+      transition: width 0.3s, background 0.3s;
+    }
+
+    .strength-label {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="logo">Tradiții Moldovenești</div>
+    <p class="subtitle">Creează-ți contul pentru rezervări și oferte exclusive</p>
+
+    <div class="form-box">
+
+      <!-- SECȚIUNEA 1: Cont -->
+      <p class="section-label">Informații Cont</p>
+
+      <!-- Câmp Username: min 5 caractere, doar litere mici și cifre -->
+      <div class="field">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder=" "
+          autocomplete="username"
+          required
+          minlength="5"
+          maxlength="20"
+          pattern="[a-z0-9]{5,20}"
+        />
+        <label for="username">Username</label>
+        <span class="error-msg">
+          Minim 5 caractere, doar litere mici (a-z) și cifre (0-9). Fără spații sau simboluri.
+        </span>
+      </div>
+
+      <!-- Câmp Parolă: regex complex — min 8 caractere, 1 majusculă, 1 cifră, 1 simbol -->
+      <div class="field">
+        <input
+          type="password"
+          id="parola"
+          name="parola"
+          placeholder=" "
+          autocomplete="new-password"
+          required
+          pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>/?]).{8,}"
+          oninput="updateStrength(this.value)"
+        />
+        <label for="parola">Parolă</label>
+        <div class="strength-bar">
+          <div class="strength-fill" id="strength-fill"></div>
+        </div>
+        <div class="strength-label" id="strength-label">Introduceți parola</div>
+        <span class="error-msg">
+          Minim 8 caractere, cel puțin: o literă MARE, un număr (0-9) și un simbol (!@#$%^&*).
+        </span>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- SECȚIUNEA 2: Rezervare -->
+      <p class="section-label">Detalii Rezervare</p>
+
+      <!-- Câmp Data Rezervării: min 2026-05-01, max 2026-05-31 -->
+      <div class="field" style="position:relative;">
+        <input
+          type="date"
+          id="data-rez"
+          name="data_rezervare"
+          placeholder=" "
+          min="2026-05-01"
+          max="2026-05-31"
+          autocomplete="off"
+          required
+        />
+        <label for="data-rez" style="top:-10px; transform:none; font-size:11px; color:var(--gold); background:var(--card); padding:0 4px;">
+          Data Rezervării (Mai 2026)
+        </label>
+        <span class="error-msg">Selectați o dată din luna Mai 2026.</span>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- Câmp Culoare Temă: modifică fundalul paginii via CSS variables -->
+      <div class="color-field">
+        <label for="culoare-tema">🎨 Culoare Temă Fundal</label>
+        <div class="color-row">
+          <input
+            type="color"
+            id="culoare-tema"
+            name="culoare_tema"
+            value="#111111"
+            oninput="schimbaFundal(this.value)"
+          />
+          <div class="color-preview">
+            Fundal curent: <span id="color-hex">#111111</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Înregistrează-te</button>
+    </div>
+  </div>
+
+  <script>
+    // Color picker → modifică fundalul via CSS custom property
+    function schimbaFundal(valoare) {
+      document.body.style.background = valoare;
+      document.getElementById('color-hex').textContent = valoare.toUpperCase();
+    }
+
+    // Indicator putere parolă
+    function updateStrength(val) {
+      const fill = document.getElementById('strength-fill');
+      const label = document.getElementById('strength-label');
+
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[!@#$%^&*()\-_=+\[\]{};':"\\|,.<>/?]/.test(val)) score++;
+
+      const pct = (score / 4) * 100;
+      const colors = ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71'];
+      const labels = ['Slabă', 'Moderată', 'Bună', 'Excelentă'];
+
+      fill.style.width = pct + '%';
+      fill.style.background = colors[score - 1] || '#333';
+      label.textContent = score > 0 ? labels[score - 1] : 'Introduceți parola';
+      label.style.color = colors[score - 1] || 'var(--muted)';
+    }
+  </script>
+
+</body>
+</html>
