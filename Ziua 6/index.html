@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tradiții Moldovenești</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="logo">Tradiții Moldovenești</a>
+    <ul class="nav-links">
+      <li><a href="#">Acasa</a></li>
+      <li><a href="#despre">Despre Noi</a></li>
+      <li><a href="#servicii">Servicii</a></li>
+      <li><a href="#">Meniu</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="reservare"><a href="#contact">Rezervare</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Bucură-te de Sute de <span class="gold">Gusturi</span> sub un Singur Acoperiș</h1>
+      <p>
+        Bine ați venit la restaurantul nostru, unde arta culinară este în centrul atenției.
+        Bucătarii noștri talentați creează preparate care sunt un adevărat deliciu pentru simțuri.
+        Alăturați-vă nouă pentru o experiență care îmbină cele mai proaspete ingrediente,
+        rețete inovatoare și o ambianță caldă și primitoare.
+      </p>
+      <a href="#contact" class="btn-primary">Rezervă o Masă</a>
+    </div>
+    <div class="hero-image-placeholder"></div>
+  </section>
+
+  <!-- SERVICII -->
+  <!-- Layout Flexbox de: Nume Prenume -->
+  <section id="servicii">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <p class="section-title">Serviciile <span class="gold">Noastre</span></p>
+      <p class="section-subtitle">Tot ce ai nevoie pentru o experiență memorabilă</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🍽️</span>
+        <h3>Meniu Tradițional</h3>
+        <p>Preparate autentice moldovenești gătite după rețete tradiționale de sute de ani.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎉</span>
+        <h3>Rezervări Evenimente</h3>
+        <p>Organizăm nunți, botezuri și evenimente corporate în săli elegant decorate.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛵</span>
+        <h3>Livrare la Domiciliu</h3>
+        <p>Aducem gustul restaurantului direct la ușa ta, rapid și în condiții optime.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">👨‍🍳</span>
+        <h3>Catering Personalizat</h3>
+        <p>Servicii de catering pentru orice tip de eveniment, oriunde în Moldova.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT — CSS GRID 2/3 + 1/3 -->
+  <section id="contact">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <p class="section-title">Contactează-<span class="gold">ne</span></p>
+      <p class="section-subtitle">Suntem bucuroși să răspundem la orice întrebare sau rezervare</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- FORMULAR — 2/3 din lățime -->
+      <div class="contact-form">
+
+        <!-- PERECHEA II: fieldset + legend pentru Date Personale -->
+        <fieldset>
+          <legend>Date Personale</legend>
+
+          <div class="field">
+            <input type="text" id="nume" name="nume" placeholder=" "
+                   autocomplete="name" required minlength="2" />
+            <label for="nume">Nume complet</label>
+            <span class="error-msg">Introduceți cel puțin 2 caractere.</span>
+          </div>
+
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder=" "
+                   autocomplete="email" required />
+            <label for="email">Adresă de email</label>
+            <span class="error-msg">Introduceți o adresă de email validă.</span>
+          </div>
+
+          <div class="field">
+            <input type="tel" id="telefon" name="telefon" placeholder=" "
+                   autocomplete="tel"
+                   pattern="[0-9\+\s\-]{7,15}" />
+            <label for="telefon">Număr de telefon</label>
+            <span class="error-msg">Format invalid. Ex: +373 69 000 000</span>
+          </div>
+        </fieldset>
+
+        <!-- PERECHEA II: fieldset + legend pentru Mesaj -->
+        <fieldset>
+          <legend>Mesaj / Rezervare</legend>
+
+          <!-- Select stilizat -->
+          <div class="field">
+            <select id="subiect" name="subiect" autocomplete="off">
+              <option value="" disabled selected></option>
+              <option value="rezervare">Rezervare masă</option>
+              <option value="eveniment">Organizare eveniment</option>
+              <option value="catering">Servicii catering</option>
+              <option value="feedback">Feedback</option>
+              <option value="altele">Altele</option>
+            </select>
+            <label for="subiect">Subiect</label>
+          </div>
+
+          <div class="field">
+            <input type="date" id="data" name="data" placeholder=" "
+                   min="2026-05-01" max="2026-05-31"
+                   autocomplete="off" />
+            <label for="data" style="top: -10px; font-size: 11px; color: var(--gold); background: var(--card); padding: 0 4px;">Data Rezervării (Mai 2026)</label>
+          </div>
+
+          <!-- Textarea cu limită de caractere vizibilă -->
+          <div class="field">
+            <textarea id="mesaj" name="mesaj" placeholder=" "
+                      maxlength="500" rows="5"
+                      autocomplete="off"
+                      oninput="document.getElementById('char-count').textContent = this.value.length"></textarea>
+            <label for="mesaj">Mesajul tău</label>
+            <div class="char-counter"><span id="char-count">0</span> / 500 caractere</div>
+          </div>
+        </fieldset>
+
+        <!-- Submit cu loading animation CSS -->
+        <button type="submit" class="btn-submit">Trimite Mesajul</button>
+      </div>
+
+      <!-- SIDEBAR INFO — 1/3 din lățime -->
+      <div class="contact-info">
+        <!-- Hartă (iframe) -->
+        <div class="contact-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91436.11740563258!2d28.750530299999998!3d47.02425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3628b769a1%3A0x37d1d6305749dd3a!2sChișinău%2C%20Moldova!5e0!3m2!1sro!2smd!4v1715000000000"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Detalii contact -->
+        <div class="contact-details">
+          <h3>Informații Contact</h3>
+
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong>Adresă</strong><br/>
+              Str. Ștefan cel Mare 100<br/>
+              Chișinău, Moldova
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div>
+              <strong>Telefon</strong><br/>
+              +373 22 000 000
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div>
+              <strong>Email</strong><br/>
+              contact@traditii.md
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <strong>Program</strong><br/>
+              Lun–Vin: 10:00 – 22:00<br/>
+              Sâm–Dum: 09:00 – 23:00
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SS10 — MENIU PREȚURI -->
+  <section id="meniu-preturi">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <p class="section-title">Meniu & <span class="gold">Prețuri</span></p>
+      <p class="section-subtitle">Preparatele noastre tradiționale moldovenești</p>
+    </div>
+    <!-- Realizat de: Nume Prenume -->
+    <div class="table-container">
+      <table class="meniu-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Preparat</th>
+            <th rowspan="2">Categorie</th>
+            <th colspan="2">Porție</th>
+            <th rowspan="2">Alergeni</th>
+            <th rowspan="2">Preț (MDL)</th>
+          </tr>
+          <tr>
+            <th>Mică</th>
+            <th>Mare</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="preparat">Ciorbă de burtă</td>
+            <td class="categorie">Supă</td>
+            <td>300g</td><td>500g</td>
+            <td>Lactate</td>
+            <td class="pret">55</td>
+          </tr>
+          <tr>
+            <td class="preparat">Mămăligă cu brânză</td>
+            <td class="categorie">Fel principal</td>
+            <td>200g</td><td>400g</td>
+            <td>Lactate</td>
+            <td class="pret">65</td>
+          </tr>
+          <tr>
+            <td class="preparat">Sarmale moldovenești</td>
+            <td class="categorie">Fel principal</td>
+            <td>3 buc</td><td>6 buc</td>
+            <td>Gluten</td>
+            <td class="pret">85</td>
+          </tr>
+          <tr>
+            <td class="preparat">Plăcintă cu varză</td>
+            <td class="categorie">Aperitiv</td>
+            <td>150g</td><td>300g</td>
+            <td>Gluten, Ouă</td>
+            <td class="pret">35</td>
+          </tr>
+          <tr>
+            <td class="preparat">Friptură de porc</td>
+            <td class="categorie">Fel principal</td>
+            <td>200g</td><td>400g</td>
+            <td>—</td>
+            <td class="pret">110</td>
+          </tr>
+          <tr>
+            <td class="preparat">Cozonac moldovenesc</td>
+            <td class="categorie">Desert</td>
+            <td>100g</td><td>200g</td>
+            <td>Gluten, Ouă, Lactate</td>
+            <td class="pret">45</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SS14 — LOCAȚIE & PREZENTARE -->
+  <!-- Multimedia integrata de: Nume Prenume -->
+  <section id="despre">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <p class="section-title">Locație & <span class="gold">Prezentare</span></p>
+      <p class="section-subtitle">Descoperă atmosfera și găsește-ne pe hartă</p>
+    </div>
+    <div class="media-grid">
+      <div class="media-block">
+        <h3 class="media-title">🎬 Video de Prezentare</h3>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/NbXloRbJ9Vk"
+            title="ETNO MOLDOVA - Traditii, datini, obiceiuri din Moldova"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <div class="media-block">
+        <h3 class="media-title">📍 Locația Noastră</h3>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91436.11740563258!2d28.750530299999998!3d47.02425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3628b769a1%3A0x37d1d6305749dd3a!2sChișinău!5e0!3m2!1sro!2smd!4v1715000000000"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col">
+      <a href="#contact" class="reserva-link">Rezerva o masa</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Servicii</div>
+      <ul>
+        <li><a href="#">Meniu Tradițional</a></li>
+        <li><a href="#">Rezervări Evenimente</a></li>
+        <li><a href="#">Livrare la Domiciliu</a></li>
+        <li><a href="#">Catering Personalizat</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Companie</div>
+      <ul>
+        <li><a href="#">Despre Noi</a></li>
+        <li><a href="#">Echipa Noastră</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Further Information</div>
+      <ul>
+        <li><a href="#">Termeni și Condiții</a></li>
+        <li><a href="#">Politica de Confidențialitate</a></li>
+      </ul>
+      <div style="margin-top: 18px;">
+        <div class="footer-col-title">Conectează-te cu Noi</div>
+        <div class="social-icons">
+          <a href="#" class="social-icon" title="Instagram">
+            <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" class="social-icon linkedin" title="LinkedIn">
+            <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
