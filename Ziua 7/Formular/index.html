@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Ziua 7 Perechea IV - Enterprise UI</title>
+  <link rel="stylesheet" href="/Formular/style.css">
+</head>
+<body>
+<!-- Realizat de: Nume Prenume | RC 251 -->
+
+<main class="page">
+
+  <!-- ══ FORMULAR INTELIGENT CSS-ONLY ══ -->
+  <section class="form-section">
+    <h1 class="form-section__title">📋 Formular <span class="form-section__accent">Inteligent</span></h1>
+    <p class="form-section__subtitle">Butonul se activează doar când toate câmpurile sunt valide</p>
+
+    <div class="form" id="main-form">
+
+      <!-- Date Personale -->
+      <fieldset class="form__fieldset">
+        <legend class="form__legend">Date Personale</legend>
+
+        <!-- Floating Label + Validare -->
+        <div class="form__field">
+          <input class="form__input" type="text" id="f-nume"
+                 name="nume" placeholder=" "
+                 required minlength="2" autocomplete="name"/>
+          <label class="form__label" for="f-nume">Nume complet</label>
+          <span class="form__error">Minim 2 caractere.</span>
+          <span class="form__success">✓</span>
+        </div>
+
+        <div class="form__field">
+          <input class="form__input" type="email" id="f-email"
+                 name="email" placeholder=" "
+                 required autocomplete="email"/>
+          <label class="form__label" for="f-email">Adresă email</label>
+          <span class="form__error">Email invalid.</span>
+          <span class="form__success">✓</span>
+        </div>
+
+        <div class="form__field">
+          <input class="form__input" type="tel" id="f-tel"
+                 name="tel" placeholder=" "
+                 pattern="[0-9+\s\-]{7,15}"
+                 autocomplete="tel"/>
+          <label class="form__label" for="f-tel">Telefon (opțional)</label>
+        </div>
+
+      </fieldset>
+
+      <!-- Mesaj -->
+      <fieldset class="form__fieldset">
+        <legend class="form__legend">Mesaj</legend>
+
+        <div class="form__field">
+          <select class="form__input form__input--select" id="f-subiect" name="subiect" required>
+            <option value="" disabled selected></option>
+            <option value="rezervare">Rezervare masă</option>
+            <option value="eveniment">Organizare eveniment</option>
+            <option value="feedback">Feedback</option>
+          </select>
+          <label class="form__label form__label--active" for="f-subiect">Subiect</label>
+          <span class="form__error">Selectați un subiect.</span>
+          <span class="form__success">✓</span>
+        </div>
+
+        <div class="form__field">
+          <textarea class="form__input form__input--textarea"
+                    id="f-mesaj" name="mesaj"
+                    placeholder=" "
+                    required minlength="10" maxlength="500"
+                    rows="5"></textarea>
+          <label class="form__label form__label--textarea" for="f-mesaj">Mesajul tău</label>
+          <span class="form__error">Minim 10 caractere.</span>
+          <span class="form__success">✓</span>
+        </div>
+
+        <!-- Checkbox Termeni — controlează butonul Submit -->
+        <div class="form__checkbox-wrap">
+          <input class="form__checkbox" type="checkbox" id="f-termeni" name="termeni" required/>
+          <label class="form__checkbox-label" for="f-termeni">
+            Accept <a href="#" class="form__link">Termenii și Condițiile</a>
+          </label>
+        </div>
+
+      </fieldset>
+
+      <!-- Buton Gatekeeper: pulsează doar când totul e valid -->
+      <button class="form__submit-btn" type="submit">
+        Trimite Mesajul
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ══ EMPTY STATE LOGIC ══ -->
+  <section class="services-section">
+    <h2 class="services-section__title">Servicii Selectate</h2>
+    <div class="services-section__container" id="services-container">
+      <!-- Gol intentionat — :empty afișează mesajul -->
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

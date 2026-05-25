@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>SS20 + SS21 - Neural Interface</title>
+  <link rel="stylesheet" href="hologram_system.css">
+</head>
+<body>
+<!-- Realizat de: Nume Prenume | Nivel Expert RC 251 -->
+
+<!-- ══ SS21: NEURAL HOLOGRAM ══ -->
+<main class="neural-engine">
+  <div class="spatial-anchor" id="anchor">
+
+    <div class="layer core-glow"></div>
+    <div class="layer glass-chassis"></div>
+
+    <div class="layer data-interface">
+      <div class="header">SYSTEM_STATUS: ACTIVE</div>
+      <h1 class="glitch-text" data-text="NEURAL_LINK">NEURAL_LINK</h1>
+      <div class="stats">LATENCY: 0.002ms</div>
+    </div>
+
+    <div class="layer orbital-node">
+      <div class="satellite"></div>
+    </div>
+
+    <div class="layer specular-highlight" id="specular"></div>
+
+  </div>
+</main>
+
+<!-- ══ SS20: UI ORCHESTRATION DASHBOARD ══ -->
+<section class="ui-orchestrator">
+  <h2 class="section-title">🏗️ Dashboard Modular</h2>
+
+  <div class="feature-wrapper" style="--i: 1;">
+    <div class="feature-card">
+      <div class="card-icon">🚀</div>
+      <div class="card-content">
+        <h3 class="stagger-text">Arhitectură GPU</h3>
+        <p class="stagger-text">Sincronizare la nivel de pixel.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-wrapper" style="--i: 2;">
+    <div class="feature-card">
+      <div class="card-icon">⚡</div>
+      <div class="card-content">
+        <h3 class="stagger-text">Performanță Maximă</h3>
+        <p class="stagger-text">First Meaningful Paint optimizat.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-wrapper" style="--i: 3;">
+    <div class="feature-card">
+      <div class="card-icon">🎨</div>
+      <div class="card-content">
+        <h3 class="stagger-text">Design System</h3>
+        <p class="stagger-text">Variabile CSS la nivel atomic.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-wrapper" style="--i: 4;">
+    <div class="feature-card">
+      <div class="card-icon">🔗</div>
+      <div class="card-content">
+        <h3 class="stagger-text">Chained Animations</h3>
+        <p class="stagger-text">Animații înlănțuite cu calc().</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-wrapper" style="--i: 5;">
+    <div class="feature-card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-content">
+        <h3 class="stagger-text">CLS Reduction</h3>
+        <p class="stagger-text">Zero layout shift la încărcare.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-wrapper" style="--i: 6;">
+    <div class="feature-card">
+      <div class="card-icon">🌐</div>
+      <div class="card-content">
+        <h3 class="stagger-text">GPU Layering</h3>
+        <p class="stagger-text">will-change activat pe fiecare card.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const anchor = document.getElementById('anchor');
+  const specular = document.getElementById('specular');
+  const root = document.documentElement;
+  let lastX = 0, lastY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+
+    const rx = ((e.clientY - cy) / cy) * -15;
+    const ry = ((e.clientX - cx) / cx) * 15;
+
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    const speed = Math.sqrt(dx * dx + dy * dy);
+    const glitch = Math.min(speed * 0.3, 12);
+
+    const shadowX = ry * 1.5;
+    const shadowY = rx * -1.5;
+
+    root.style.setProperty('--rx', rx + 'deg');
+    root.style.setProperty('--ry', ry + 'deg');
+    root.style.setProperty('--glitch-offset', glitch + 'px');
+    root.style.setProperty('--shadow-x', shadowX + 'px');
+    root.style.setProperty('--shadow-y', shadowY + 'px');
+
+    const sx = 100 - (e.clientX / window.innerWidth) * 100;
+    const sy = 100 - (e.clientY / window.innerHeight) * 100;
+    specular.style.background =
+      `radial-gradient(circle at ${sx}% ${sy}%, rgba(0,242,255,0.18) 0%, transparent 65%)`;
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+/* ════════════════════════════════════════════
+   ARHITECTURA BEM — RC 251
+   Block__Element--Modifier
+   Specificitate: o singura clasa per selector
+   ════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────
+   _VARIABLES.CSS — Ierarhie: Primitive → Semantic → Component
+   ──────────────────────────────────────────── */
+:root {
+  /* Primitives */
+  --p-cyan-400: #00f2ff;
+  --p-red-500: #ff003c;
+  --p-green-400: #00e676;
+  --p-blue-400: #63b3ed;
+  --p-gray-900: #0f172a;
+  --p-gray-800: #1e293b;
+  --p-gray-700: #334155;
+  --p-gray-400: #94a3b8;
+  --p-white: #f8fafc;
+
+  /* Semantic */
+  --color-bg: var(--p-gray-900);
+  --color-surface: var(--p-gray-800);
+  --color-border: var(--p-gray-700);
+  --color-text: var(--p-white);
+  --color-muted: var(--p-gray-400);
+  --color-focus: var(--p-blue-400);
+  --color-valid: var(--p-green-400);
+  --color-invalid: var(--p-red-500);
+  --color-brand: var(--p-cyan-400);
+
+  /* Component */
+  --ui-input-bg: rgba(255,255,255,0.04);
+  --ui-input-border: var(--color-border);
+  --ui-input-radius: 10px;
+  --ui-btn-radius: 10px;
+  --ui-transition: 0.2s ease;
+}
+
+/* ────────────────────────────────────────────
+   _ATOMS.CSS — Reset & Base
+   ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-bg);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+/* ────────────────────────────────────────────
+   _MOLECULES.CSS — BEM Blocks
+   ──────────────────────────────────────────── */
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+
+.form-section__title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.form-section__accent { color: var(--color-brand); }
+
+.form-section__subtitle {
+  color: var(--color-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+
+.form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: filter var(--ui-transition), border-color var(--ui-transition);
+}
+
+.form:focus-within {
+  filter: brightness(1.06);
+  border-color: rgba(0, 242, 255, 0.3);
+}
+
+/* ELEMENT: form__fieldset */
+.form__fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px 20px 20px;
+  margin-bottom: 24px;
+}
+
+/* ELEMENT: form__legend */
+.form__legend {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  padding: 0 8px;
+}
+
+/* ELEMENT: form__field — container pentru floating label */
+.form__field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* ELEMENT: form__input */
+.form__input {
+  width: 100%;
+  background: var(--ui-input-bg);
+  border: 1px solid var(--ui-input-border);
+  border-radius: var(--ui-input-radius);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 14px 40px 14px 16px;
+  outline: none;
+  transition: border-color var(--ui-transition), box-shadow var(--ui-transition);
+  appearance: none;
+  /* Reflow & Repaint Minimization: folosim transform nu margin/left */
+  will-change: transform;
+}
+
+/* MODIFIER: form__input--select */
+.form__input--select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300f2ff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+/* MODIFIER: form__input--textarea */
+.form__input--textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* ── FLOATING LABEL ── */
+.form__label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--color-muted);
+  pointer-events: none;
+  transition: all var(--ui-transition);
+  background: transparent;
+  padding: 0 4px;
+}
+
+.form__label--textarea {
+  top: 18px;
+  transform: none;
+}
+
+/* Floating label ridicat */
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown) ~ .form__label,
+.form__label--active {
+  top: -10px;
+  transform: none;
+  font-size: 11px;
+  color: var(--color-brand);
+  background: var(--color-surface);
+  letter-spacing: 0.05em;
+}
+
+/* ── INDICATOR VIZUAL DE STARE ── */
+
+/* Focus: bordura albastra */
+.form__input:focus {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
+}
+
+/* Valid: bordura verde */
+.form__input:valid:not(:placeholder-shown) {
+  border-color: var(--color-valid);
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.1);
+}
+
+/* Invalid: bordura rosie */
+.form__input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--color-invalid);
+  box-shadow: 0 0 0 3px rgba(255, 0, 60, 0.1);
+}
+
+/* ELEMENT: form__error */
+.form__error {
+  display: none;
+  font-size: 11px;
+  color: var(--color-invalid);
+  margin-top: 5px;
+  padding-left: 4px;
+}
+
+.form__input:invalid:not(:placeholder-shown):not(:focus) ~ .form__error {
+  display: block;
+}
+
+/* ELEMENT: form__success — indicator verde */
+.form__success {
+  display: none;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-valid);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.form__input:valid:not(:placeholder-shown) ~ .form__success {
+  display: block;
+}
+
+/* ── CHECKBOX ── */
+.form__checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.form__checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-brand);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.form__checkbox-label {
+  font-size: 13px;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.form__link {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+/* ── BUTON GATEKEEPER ── */
+/* MODIFIER: form__submit-btn — inactiv by default */
+.form__submit-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--ui-btn-radius);
+  cursor: not-allowed;
+  background: var(--p-gray-700);
+  color: var(--color-muted);
+  transition: background var(--ui-transition), color var(--ui-transition), transform var(--ui-transition);
+  /* Reflow Minimization: transform in loc de margin */
+  will-change: transform;
+}
+
+/*
+  Complex Selector:
+  Butonul se activeaza DOAR cand:
+  - checkbox-ul #f-termeni este bifat
+  - formularul contine campuri :valid
+*/
+.form__checkbox:checked ~ * .form__submit-btn,
+#f-termeni:checked ~ .form__submit-btn {
+  background: var(--color-brand);
+  color: #000;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+/* Alternativa cu :has() pentru browsere moderne */
+.form:has(#f-termeni:checked) .form__submit-btn {
+  background: var(--color-brand);
+  color: #000000;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 10px rgba(0, 242, 255, 0);
+  }
+}
+
+/* ── EMPTY STATE LOGIC ── */
+.services-section__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.services-section__container {
+  min-height: 80px;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* :empty — mesajul apare cand containerul e gol */
+.services-section__container:empty::before {
+  content: "Niciun serviciu selectat";
+  color: var(--color-muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ── GPU DEBUG MODE ──
+   Adauga clasa 'debug' pe body pentru a vedea
+   toate elementele cu will-change evidentiate */
+.debug .form__input,
+.debug .form__submit-btn {
+  outline: 2px solid orange !important;
+}
