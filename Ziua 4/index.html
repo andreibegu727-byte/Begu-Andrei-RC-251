@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proiect RC251 — Ziua 4</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGAȚIE STICKY — GLASSMORPHISM
+       position: sticky + z-index 1000 + rgba + backdrop-filter
+       Flexbox cu justify-content: space-between (logo vs linkuri)
+  ============================================================= -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-logo">RC251</a>
+        <ul class="navbar-links">
+          <li><a href="#servicii">Servicii</a></li>
+          <li><a href="#misiune">Misiune</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================= -->
+  <section class="hero">
+    <h1>Layout Avansat cu CSS Grid & Flexbox</h1>
+    <p>Demonstrație completă: navigație Glassmorphism, grid adaptiv
+       fără media queries și inversare de flux pe mobil.</p>
+  </section>
+
+  <!-- ============================================================
+       GRID SERVICII — SELF-ADAPTIVE
+       repeat(auto-fit, minmax(280px, 1fr)) — zero media queries
+       6 carduri cu border-radius: 12px, box-shadow, tranziții
+  ============================================================= -->
+  <main>
+    <section class="services" id="servicii">
+      <h2>Serviciile Noastre</h2>
+      <p class="section-desc">
+        Grid-ul de mai jos se auto-adaptează la orice lățime de ecran 
+        fără nicio linie de media query scrisă manual.
+      </p>
+
+      <div class="services-grid">
+
+        <article class="service-card">
+          <span class="icon">🎨</span>
+          <h3>Design UI/UX</h3>
+          <p>Creăm interfețe moderne, accesibile și centrate pe utilizator,
+             cu accent pe micro-animații și feedback vizual clar.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="icon">💻</span>
+          <h3>Dezvoltare Frontend</h3>
+          <p>Cod curat, semantic și validat W3C. Flexbox, Grid și
+             CSS modern pentru layout-uri robuste pe orice dispozitiv.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="icon">⚡</span>
+          <h3>Optimizare Performanță</h3>
+          <p>Reducerea timpilor de încărcare prin minificare, lazy loading
+             și eliminarea blocajelor din Critical Rendering Path.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="icon">🔒</span>
+          <h3>Securitate Web</h3>
+          <p>Implementarea HTTPS, CSP headers și protecție împotriva
+             vulnerabilităților XSS și CSRF.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="icon">📱</span>
+          <h3>Design Responsiv</h3>
+          <p>Layout-uri care funcționează perfect pe orice rezoluție,
+             de la 320px mobil până la display-uri 4K ultrawide.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="icon">☁️</span>
+          <h3>Backup Multi-Cloud</h3>
+          <p>Flux automatizat GitHub + Google Drive pentru versionare
+             completă și recuperare rapidă a proiectelor.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECȚIUNEA MISIUNE — INVERSAREA FLUXULUI
+         Desktop: imagine stânga | text dreapta
+         Mobil: imagine deasupra (order: -1) | text dedesubt
+    =========================================================== -->
+    <section class="mission" id="misiune">
+      <div class="mission-inner">
+
+        <!-- 
+          În HTML, imaginea este prima (stânga pe desktop).
+          Pe mobil, proprietatea CSS "order: -1" din style.css
+          o ridică vizual deasupra textului fără a schimba HTML-ul.
+        -->
+        <div class="mission-image">
+          <div class="img-placeholder">🚀</div>
+        </div>
+
+        <div class="mission-text">
+          <h2>Misiunea Noastră</h2>
+          <p>
+            Construim experiențe digitale care durează. Fiecare linie de cod
+            este scrisă cu intenție, fiecare decizie de design este ancorată
+            în nevoile reale ale utilizatorilor.
+          </p>
+          <p>
+            Prin validare W3C continuă și backup multi-cloud, ne asigurăm că
+            proiectele voastre sunt sigure, curate și scalabile.
+          </p>
+          <a href="#contact" class="btn-primary">Contactează-ne</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================= -->
+  <footer class="footer" id="contact">
+    <p>© 2026 RC251 — Proiect Ziua 4 | Validat W3C | Backup GitHub + Drive</p>
+  </footer>
+
+</body>
+</html>
